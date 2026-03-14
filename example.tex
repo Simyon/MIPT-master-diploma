@@ -1,0 +1,40 @@
+\documentclass{mipt-thesis-bs}
+% Следующие две строки нужны только для biblatex. Для inline-библиографии их следует убрать.
+\usepackage{mipt-thesis-biblatex}
+\addbibresource{example.bib}
+
+\title{Изучение мохнатых существ с $\alpha$ Центавра}
+\author{Сидоров А.\,Б.}
+\supervisor{Иванов В.\,Г.}
+%\referee{Петров Д.\,Е.}       % требуется только для mipt-thesis-ms
+\groupnum{082}
+\faculty{Факультет проблем физики и энергетики}
+\department{Кафедра космической физики}
+
+\begin{document}
+
+\frontmatter
+\titlecontents
+
+\mainmatter
+
+
+\chapter{Введение}
+
+Здесь идет текст. Вот так выглядит ссылка на библиографию \cite{langmuir26}. Аналогично добавляются еще главы, внутри них можно объявлять секции с помощью \verb|\section|.
+
+
+\backmatter
+
+\printbib
+% Следующие строки необходимо раскомментировать, а предыдущую закомментировать, если используется inline-библиография.
+%\begin{thebibliography}{99}
+%    \bibitem{langmuir26}
+%        H. Mott-Smith, I. Langmuir. ``The theory of collectors in gaseous discharges''. \emph{Phys. Rev.} \textbf{28} (1926)
+%\end{thebibliography}
+
+\chapter{Благодарности}
+
+Благодарности идут тут.
+
+\end{document}
