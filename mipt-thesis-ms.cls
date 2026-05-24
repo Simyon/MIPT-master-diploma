@@ -19,6 +19,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,russian]{babel}
 % Formatting
+\RequirePackage{enumitem}
 \RequirePackage{geometry}
 \RequirePackage{setspace}
 \RequirePackage{indentfirst}
@@ -180,6 +181,9 @@
 
 %%%%% Titlepage and contents %%%%%
 % Set some "variables"
+\newcommand{\faculty}[1]{\def\mtfacultytext{#1}}
+\newcommand{\department}[1]{\def\mtdepartmenttext{#1}}
+\newcommand{\speciality}[1]{\def\mtspecialitytext{#1}}
 \renewcommand{\author}[1]{\def\mtauthortext{#1}}
 \renewcommand{\title}[1]{\def\mttitletext{#1}}
 \newcommand{\groupnum}[1]{\def\mtgroupnumtext{#1}}
@@ -198,13 +202,13 @@
         исследовательский университет) \\ }
         \vspace{1cm}
 
-        Физтех-школа Прикладной Математики и Информатики (ФПМИ) \\
-        Кафедра корпоративных информационных систем \\
+        \mtfacultytext{} \\
+        \mtdepartmenttext{} \\
 
         \vspace{3em}
 
-        Выпускная квалификационная работа магистра по специальности 09.04.01
-        <<Информатика и вычислительная техника>>
+        Выпускная квалификационная работа магистра по специальности \mtspecialitytext{}
+        
     \end{center}
 
     \begin{center}
@@ -238,8 +242,8 @@
 }
 
 \newcommand{\titlecontents}{
-    \titlepage \addemptypage
-    \tableofcontents \addemptypage
+    \clearpage  
+    \tableofcontents 
     \pagestyle{miptthesis}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,110 @@
+\documentclass{mipt-thesis-ms}
+
+% Принудительно арабская нумерация страниц
+\renewcommand{\thepage}{\arabic{page}}
+\usepackage{algorithm}        % среда algorithm
+\usepackage{algpseudocode}    % команды \State, \If, \Return и т.д.
+\usepackage{float}            % опция [H] для фиксации позиции
+\usepackage{amsmath}          % для \text{} и математических символов
+\usepackage{xurl} 
+\usepackage[hyphens]{url}
+
+% Опционально: русские названия блоков (если нужно)
+\algrenewcommand\algorithmicrequire{\textbf{Вход:}}
+\algrenewcommand\algorithmicensure{\textbf{Выход:}}
+
+% Отключаем автоматическую смену стиля нумерации
+\let\oldfrontmatter\frontmatter
+\let\oldmainmatter\mainmatter
+\renewcommand{\frontmatter}{\oldfrontmatter\renewcommand{\thepage}{\arabic{page}}}
+\renewcommand{\mainmatter}{\oldmainmatter\renewcommand{\thepage}{\arabic{page}}}
+
+% Следующие две строки нужны только для biblatex. Для inline-библиографии их следует убрать.
+\usepackage{mipt-thesis-biblatex}
+\addbibresource{biblo.bib}
+
+\faculty{Физтех-школа Прикладной Математики и Информатики (ФПМИ)}
+\department{Кафедра корпоративных информационных систем}
+\speciality{09.04.01 <<Информатика и вычислительная техника>>}
+
+\title{Разработка системы для разбора библиографических ссылок на основе дообученных больших языковых моделей с использованием LoRA-адаптеров}
+\author{Красоткин С.\,А.}
+\supervisor{Грабовой А.\,В.}
+%\referee{Петров Д.\,Е.}       % требуется только для mipt-thesis-ms
+\groupnum{М05-411е}
+
+\begin{document}
+
+\thispagestyle{empty}  
+\titlepage
+\setcounter{page}{1}   
+
+\clearpage              
+\pagestyle{miptthesis}  
+\setcounter{page}{2}    
+
+\chapter*{Аннотация}
+
+Объект исследования -- процесс автоматического извлечения и структурирования библиографической информации из полнотекстовых научных публикаций. 
+Предмет исследования -- методы и алгоритмы для многоуровневого структурирования библиографических записей в условиях стилевого многообразия. В частности изучается применимость больших языковых моделей с применением низкоранговой адаптации в области извлечения библиографической информации из научных документов.
+Цель работы: разработка системы для разбора библиографии.
+
+В процессе работы ставились эксперименты на различных наборах данных, содержащих файлы с публикациями и разметкой библиографических записей. По качеству извлечения сравнивались регулярные выражения, гистограммные градиентные бустинговые деревья\cite{kopanichuk2025structure}, GROBID\cite{romary2015grobid}, большие языковые модели, дообученные БЯМ и использованием LoRA-адаптеров.
+
+В результате проведено сравнение для трёх уровней задачи: детектирование границ библиографии, извлечение сырых библиографических записей, структурирование библиографических областей по полям, включая классовое выделение авторов. Лучший результат для извлечения библиографических записей показал GROBID с $F_1 = 0{,}97$ и точностью $0{,}98$, а для извлечения библиографических областей Llama-3-8B c макро-$F_1 = 0{,}84$. Значения интерпретируются совместно с качественными примерами и зависят от стиля оформления и уровня шума источника. На основе этого разработана система извлечения библиографии на основе GROBID и Llama-3-8B. 
+
+\medskip
+\noindent \textbf{Ключевые слова:} БОЛЬШИЕ ЯЗЫКОВЫЕ МОДЕЛИ, ВЫДЕЛЕНИЕ ИМЕНОВАННЫХ СУЩНОСТЕЙ, ИЗВЛЕЧЕНИЕ БИБЛИОГРАФИИ, ИЗВЛЕЧЕНИЕ ИНФОРМАЦИИ, МЕТОД НИЗКОРАНГОВОЙ ОПТИМИЗАЦИИ, ОБРАБОТКА ЕСТЕСТВЕННОГО ЯЗЫКА
+
+\clearpage
+
+% Содержание
+\titlecontents 
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}} % временно отключаем номера
+\chapter*{Обозначения и сокращения}
+\addcontentsline{toc}{chapter}{Обозначения и сокращения}
+\markboth{Обозначения и сокращения}{Обозначения и сокращения}
+
+\begin{description}[leftmargin=2.5cm, style=nextline]
+    \item[БЯМ] Большие языковые модели
+    \item[ИСАНД] Информационная система анализа научной деятельности
+    \item[DOI] Digital Object Identifier
+    \item[GROBID] GeneRation Of Bibliographic Data
+    \item[LoRA] Low-Rank Adaptation — метод низкоранговой адаптации
+    \item[NER] Named Entity Recognition
+    \item[OCR] Optical Character Recognition
+    \item[PDF] Portable Document Format
+    \item[QLoRA] Quantized Low-Rank Adaptation
+\end{description}
+
+\chapter{Введение}
+
+\input{diploma/1_introduction.tex}
+
+\chapter{Литературный обзор} 
+
+\input{diploma/2_literature.tex}
+
+\chapter{Постановка задачи}
+
+\input{diploma/3_formulation.tex}
+
+\chapter{Эксперименты}
+
+\input{diploma/4_experiments.tex}
+
+\chapter{Обсуждение результатов}
+
+\input{diploma/5_discussion.tex}
+
+\chapter{Заключение}
+
+\input{diploma/6_conclusion.tex}
+
+\backmatter
+
+\chapter{Список литературы}
+\printbib
+
+\end{document}
